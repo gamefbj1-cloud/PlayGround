@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PlayGround — Build, Play, Remix</title>
+<style>
+  :root { color-scheme: light dark; --bg:#0b1020; --card:#151d33; --accent:#ff6b35; --text:#f5f7ff; --muted:#a8b0c7; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; background: radial-gradient(1200px 600px at 20% -10%, #24365e 0%, var(--bg) 55%) no-repeat, var(--bg); color:var(--text); min-height:100vh; }
+  header { display:flex; justify-content:space-between; align-items:center; padding:20px 32px; max-width:1100px; margin:0 auto; }
+  .logo { font-weight:800; font-size:22px; letter-spacing:.5px; }
+  .logo span { color:var(--accent); }
+  nav a { color:var(--muted); text-decoration:none; margin-left:20px; font-size:14px; }
+  main { max-width:1100px; margin:0 auto; padding:48px 32px 80px; display:grid; grid-template-columns:1.2fr .8fr; gap:32px; align-items:center; }
+  @media (max-width:800px){ main{grid-template-columns:1fr;} header{padding:16px 20px;} main{padding:24px 20px 48px;} }
+  h1 { font-size:clamp(36px,6vw,64px); line-height:1.05; margin:0 0 16px; }
+  h1 em { font-style:normal; color:var(--accent); }
+  p.lead { color:var(--muted); font-size:18px; line-height:1.6; margin:0 0 28px; }
+  .cta { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn { padding:14px 22px; border-radius:12px; font-weight:700; border:0; cursor:pointer; font-size:16px; text-decoration:none; display:inline-block; }
+  .btn-primary { background:var(--accent); color:#fff; }
+  .btn-ghost { background:rgba(255,255,255,.08); color:var(--text); border:1px solid rgba(255,255,255,.14); }
+  .card { background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.12); border-radius:20px; padding:28px; box-shadow:0 20px 60px rgba(0,0,0,.35); }
+  .card h2 { margin:0 0 12px; font-size:20px; }
+  .stat { display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:14px; }
+  .stat strong { color:var(--text); }
+  .dot { width:10px; height:10px; border-radius:50%; background:#22c55e; display:inline-block; margin-right:8px; box-shadow:0 0 12px #22c55e; }
+  footer { text-align:center; color:var(--muted); padding:24px; font-size:13px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Play<span>Ground</span></div>
+  <nav><a href="#">Projects</a><a href="#">Remix</a><a href="https://github.com/gamefbj1-cloud/PlayGround">Source</a></nav>
+</header>
+<main>
+  <section>
+    <h1>Build, play,<br />and <em>remix</em> with OMGithub.</h1>
+    <p class="lead">PlayGround is a zero-build static starter. Edit <code>dist/index.html</code>, push, and the preview redeploys in seconds. No bundler, no backend — just ship.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://omgithub.com/gamefbj1-cloud/PlayGround">Open the project</a>
+      <a class="btn btn-ghost" href="https://github.com/gamefbj1-cloud/PlayGround">Explore the source</a>
+    </div>
+  </section>
+  <aside class="card" id="status-card">
+    <h2><span class="dot"></span>Preview status: live</h2>
+    <div class="stat"><span>Static directory</span><strong>/dist</strong></div>
+    <div class="stat"><span>Port</span><strong id="port-label">3000</strong></div>
+    <div class="stat"><span>Build</span><strong>static · no deps</strong></div>
+    <div class="stat"><span>Rendered at</span><strong id="rendered-at">—</strong></div>
+  </aside>
+</main>
+<footer>Remixed using OMGithub.com · PlayGround starter · static deployment</footer>
+<script>
+  document.getElementById('rendered-at').textContent = new Date().toISOString();
+  fetch(location.href, { method: 'HEAD' }).then(function () {
+    document.getElementById('port-label').textContent = location.port || '3000';
+  });
+</script>
+</body>
+</html>
