@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PlayGround — هل أستطيع التحكم بجهازك؟</title>
+<style>
+  :root { --bg:#0f172a; --card:#1e293b; --accent:#38bdf8; --text:#f1f5f9; --muted:#94a3b8; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: "Segoe UI", Tahoma, Arial, sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+  main { width:min(720px,100%); background:var(--card); border:1px solid #334155; border-radius:16px; padding:32px 28px; box-shadow:0 20px 60px rgba(0,0,0,.45); }
+  h1 { margin:0 0 8px; font-size:28px; }
+  p.lead { color:var(--muted); margin:0 0 20px; line-height:1.9; }
+  .answer { background:#0b1220; border:1px solid #334155; border-radius:12px; padding:18px; line-height:2; margin-bottom:20px; }
+  .answer strong { color:var(--accent); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:20px 0; }
+  button { background:var(--accent); color:#06202e; border:0; border-radius:10px; padding:12px 14px; font-size:15px; font-weight:700; cursor:pointer; }
+  button.secondary { background:transparent; color:var(--text); border:1px solid #475569; }
+  #status { min-height:28px; color:#a5f3fc; margin-top:12px; line-height:1.8; }
+  footer { margin-top:18px; color:var(--muted); font-size:13px; line-height:1.8; }
+  .badge { display:inline-block; background:#164e63; color:#a5f3fc; border-radius:999px; padding:4px 12px; font-size:13px; margin-bottom:12px; }
+</style>
+</head>
+<body>
+<main>
+  <span class="badge">PlayGround · تطبيق ويب</span>
+  <h1>هل أستطيع التحكم بجهازك؟</h1>
+  <p class="lead">سؤالك: «هل تصتطيع التحكم بجهازي (App)» — هذه الصفحة تجيب بوضوح وتشرح حدود هذا التطبيق.</p>
+  <div class="answer">
+    <strong>الإجابة المختصرة: لا.</strong><br />
+    هذا التطبيق يعمل داخل المتصفح فقط، ولا يمكنه التحكم بجهازك أو الوصول إلى ملفاتك أو الكاميرا أو الإعدادات دون إذن صريح منك عبر واجهات المتصفح المعتمدة.
+    ما يمكنني فعله هنا هو: الإجابة عن أسئلتك، وشرح الأكواد، وبناء صفحات وتجارب تفاعلية تعمل داخل هذه الصفحة فقط.
+  </div>
+  <div class="grid">
+    <button id="btn-demo" type="button">تشغيل عرض تجريبي</button>
+    <button id="btn-time" class="secondary" type="button">عرض الوقت الحالي</button>
+    <button id="btn-clear" class="secondary" type="button">مسح الرسالة</button>
+  </div>
+  <div id="status" role="status" aria-live="polite">جرّب الأزرار أعلاه — كل ما يحدث يبقى داخل هذه الصفحة.</div>
+  <footer>
+    الخصوصية: لا يجمع هذا التطبيق أي بيانات ولا يرسل أي شيء خارج جهازك.
+    يعمل بالكامل كملفات ثابتة (HTML/CSS/JS) ويُعرض على المنفذ 3000.
+  </footer>
+</main>
+<script>
+  var status = document.getElementById('status');
+  document.getElementById('btn-demo').addEventListener('click', function () {
+    status.textContent = 'تم تشغيل العرض التجريبي داخل الصفحة بنجاح — لم يتم التحكم بأي شيء في جهازك.';
+  });
+  document.getElementById('btn-time').addEventListener('click', function () {
+    status.textContent = 'الوقت الحالي في متصفحك: ' + new Date().toLocaleString('ar');
+  });
+  document.getElementById('btn-clear').addEventListener('click', function () {
+    status.textContent = '';
+  });
+</script>
+</body>
+</html>
